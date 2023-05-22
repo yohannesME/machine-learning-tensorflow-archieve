@@ -293,7 +293,7 @@ import matplotlib.image as mpimg
 import os
 import random
 
-def random_image_augmented(train_data, dir):
+def random_image_augmented(train_data, dir, data_augmentation):
   target_class = random.choices(train_data.class_names)
   target_dir = dir + target_class
 
@@ -304,4 +304,12 @@ def random_image_augmented(train_data, dir):
   img = mpimg.imread(random_image_path)
   plt.imshow(img)
   plt.title(f'{target_class}')
+  plt.axis(False)
+
+
+  # Now let's plot our augmented image
+  augmented_img = data_augmentation(tf.expand_dims(img, axis=0))
+  plt.figure()
+  plt.imshow(tf.squeeze(augmented_img)/255.)
+  plt.title(f'Augmented Random Image: {target_class}')
   plt.axis(False)
