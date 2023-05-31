@@ -313,3 +313,13 @@ def random_image_augmented(train_data, dir, data_augmentation):
   plt.imshow(tf.squeeze(augmented_img)/255.)
   plt.title(f'Augmented Random Image: {target_class}')
   plt.axis(False)
+ 
+
+
+# Create a helper function to compare our baseline results to new model results
+def compare_baseline_to_new_results(baseline_results, new_model_results):
+  for key, value in baseline_results.items():
+    print(f"Baseline {key}: {value:.2f}, New {key}: {new_model_results[key]:.2f}, Difference: {new_model_results[key]-value:.2f}")
+
+compare_baseline_to_new_results(baseline_results=baseline_results, 
+                                new_model_results=model_1_results)
